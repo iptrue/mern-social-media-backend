@@ -73,37 +73,37 @@ export const likePost = async (req, res) => {
 };
 
 /* DELETE */
-// export const deletePost = async (req, res) => {
-//   try {
-//     const postId = req.params.id;
+export const deletePost = async (req, res) => {
+  try {
+    const postId = req.params.id;
 
-//     Post.findOneAndDelete(
-//       {
-//         _id: postId,
-//       },
-//       (err, doc) => {
-//         if (err) {
-//           console.log(err);
-//           return res.status(500).json({
-//             message: "Не удалось удалить пост",
-//           });
-//         }
+    Post.findOneAndDelete(
+      {
+        _id: postId,
+      },
+      (err, doc) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            message: "Не удалось удалить пост",
+          });
+        }
 
-//         if (!doc) {
-//           return res.status(404).json({
-//             message: "пост не найден",
-//           });
-//         }
+        if (!doc) {
+          return res.status(404).json({
+            message: "пост не найден",
+          });
+        }
 
-//         res.json({
-//           success: true,
-//         });
-//       }
-//     );
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({
-//       message: "Не удалось получить пост",
-//     });
-//   }
-// };
+        res.json({
+          success: true,
+        });
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Не удалось получить пост",
+    });
+  }
+};
