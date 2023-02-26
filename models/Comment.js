@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
-import Comment from "./Comment.js";
-const postSchema = mongoose.Schema(
+
+const commentSchema = mongoose.Schema(
   {
+    postId: {
+      type: String,
+      required: true,
+    },
     userId: {
       type: String,
       required: true,
@@ -14,7 +18,6 @@ const postSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    location: String,
     description: String,
     picturePath: String,
     userPicturePath: String,
@@ -22,10 +25,10 @@ const postSchema = mongoose.Schema(
       type: Map,
       of: Boolean,
     },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   },
   { timestamps: true }
 );
-const Post = mongoose.model("Post", postSchema);
 
-export default Post;
+const Comment = mongoose.model("Comment", commentSchema);
+
+export default Comment;
