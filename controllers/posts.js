@@ -31,7 +31,6 @@ export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find().populate("comments").exec();
     //const post = await Post.find().populate("comments");
-    console.log(post);
     res.status(200).json(post);
   } catch (err) {
     res.status(404).json({ message: err.message });
@@ -66,7 +65,7 @@ export const likePost = async (req, res) => {
       id,
       { likes: post.likes },
       { new: true }
-    );
+    ).populate("comments");
 
     res.status(200).json(updatedPost);
   } catch (err) {
